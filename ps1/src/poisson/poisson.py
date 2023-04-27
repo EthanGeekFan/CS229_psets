@@ -13,6 +13,21 @@ def main(lr, train_path, eval_path, save_path):
     """
     # Load training set
     x_train, y_train = util.load_dataset(train_path, add_intercept=True)
+    model = PoissonRegression(step_size=lr)
+    model.fit(x_train, y_train)
+    # load validation set
+    x_eval, y_eval = util.load_dataset(eval_path, add_intercept=True)
+    # predict
+    y_pred = model.predict(x_eval)
+    # save
+    np.savetxt(save_path, y_pred)
+    # plot
+    plt.figure()
+    plt.plot(y_eval, y_pred, 'bx')
+    plt.xlabel('true counts')
+    plt.ylabel('predicted counts')
+    # save figure
+    plt.savefig('poisson.png')
 
     # *** START CODE HERE ***
     # Fit a Poisson Regression model
@@ -54,6 +69,16 @@ class PoissonRegression:
             y: Training example labels. Shape (n_examples,).
         """
         # *** START CODE HERE ***
+        npx = np.array(x)
+        npy = np.array(y)
+        if self.theta is None:
+            self.theta = np.zeros(npx.shape[1])
+        for i in range(self.max_iter):
+            update = self.step_size * npx.T.dot((npy - np.exp(npx.dot(self.theta))))
+            self.theta = self.theta + update
+            if np.linalg.norm(update) < self.eps:
+                print("Converged at iteration {}".format(i))
+                break
         # *** END CODE HERE ***
 
     def predict(self, x):
@@ -66,6 +91,8 @@ class PoissonRegression:
             Floating-point prediction for each input, shape (n_examples,).
         """
         # *** START CODE HERE ***
+        npx = np.array(x)
+        return np.exp(npx.dot(self.theta))
         # *** END CODE HERE ***
 
 if __name__ == '__main__':

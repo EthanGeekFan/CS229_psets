@@ -1,2 +1,18 @@
 \begin{answer}
+    Loss function:
+    $$
+    \ell(\eta) = - \log b(y) - \eta y + a(\eta)
+    $$
+    First derivative:
+    $$
+    \frac{\partial}{\partial \eta} \ell(\eta) = \E[Y; \eta] - y
+    $$
+    Second derivative:
+    $$
+    \frac{\partial^2}{\partial \eta^2} \ell(\eta) = \operatorname{Var}(Y; \eta)
+    $$
+    With chain rule and the fact that $\eta = \theta^T x$, we have:
+    $$
+    \frac{\partial^2}{\partial \theta^2} \ell(\theta) = \frac{\partial^2}{\partial \eta^2} \ell(\eta) \left(\frac{\partial \eta}{\partial \theta}\right)^2 + \frac{\partial}{\partial \eta} \ell(\eta) \frac{\partial^2 \eta}{\partial \theta^2} = \operatorname{Var}(Y; \eta) x^T x \succcurlyeq 0
+    $$
 \end{answer}

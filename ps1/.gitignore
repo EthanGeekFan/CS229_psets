@@ -1,3 +1,8 @@
 *.aux
 *.log
 *.out
+
+__pycache__/
+*.synctex.gz
+
+submission.zip

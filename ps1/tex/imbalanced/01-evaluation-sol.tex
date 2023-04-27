@@ -1,3 +1,18 @@
-
 \begin{answer}
+    \begin{enumerate}
+        \item Trivial classifier: always predict the negative class. This will achieve the accuracy of $1-\rho$ since there are $1 - \rho$ fraction of negative examples.
+        \item The number of positive examples is $TP + FN$, and the total number of examples is $TP + TN + FP + FN$. Therefore, the fraction of positive examples is
+            $$
+                \rho = \frac{TP + FN}{TP + TN + FP + FN}
+            $$
+            For the balenced accuracy, it is equal to the number of correctly classified examples divided by the total number of total examples.
+            Which is the proportion of correctly classified positive examples $\rho \cdot A_1$ plus the proportion of correctly classified negative examples $(1 - \rho) \cdot A_0$.
+            Therefore, it is equal to
+            \begin{align*}
+                    &\rho \cdot A_1 + (1 - \rho) \cdot A_0 \\
+                  = &\frac{TP + FN}{TP + TN + FP + FN} \cdot \frac{TP}{TP + FN} + \frac{TN + FP}{TP + TN + FP + FN} \cdot \frac{TN}{TN + FP} \\
+                  = &\frac{TP + TN}{TP + TN + FP + FN} \\
+                  = &A
+            \end{align*}
+    \end{enumerate}
 \end{answer}

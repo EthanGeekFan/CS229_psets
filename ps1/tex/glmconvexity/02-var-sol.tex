@@ -1,2 +1,9 @@
 \begin{answer}
+    Take the second derivative of $a(\eta)$ with respect to $\eta$ based on 
+    the result of the previous question:
+    \begin{align*}
+        \frac{\partial^2}{\partial \eta^2} a(\eta) &= \int (y^2 b(y) \exp(\eta y - a(\eta)) - y b(y) \exp(\eta y - a(\eta)) \E[Y; \eta]) dy \\
+        &= \E[Y^2; \eta] - \E[Y; \eta]^2 \\
+        &= \operatorname{Var}(Y; \eta)
+    \end{align*}
 \end{answer}

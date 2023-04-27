@@ -1,2 +1,15 @@
 \begin{answer}
+    Expected value of $Y$ is
+    $$
+    \E(Y; \eta) = \int y p(y; \eta) dy = \int y b(y) \exp(\eta y - a(\eta)) dy
+    $$
+    Since we have:
+    $$
+    a(\eta) = \log \int b(y) \exp(\eta y) dy
+    $$
+    We can take the derivative of $a(\eta)$ with respect to $\eta$:
+    $$
+    \frac{\partial}{\partial \eta} a(\eta) = \frac{\int y b(y) \exp(\eta y) dy}{\int b(y) \exp(\eta y) dy} = \frac{\int y b(y) \exp(\eta y - a(\eta)) dy}{\int b(y) \exp(\eta y - a(\eta)) dy} = \E[Y; \eta]
+    $$
+    The last equality is due to the fact that the integral of probability density function is 1.
 \end{answer}

@@ -1,2 +1,26 @@
 \begin{answer}
+    Let the number of samples in new dataset $\cal D'$ be $n'$. Since there is no
+    actual new data, only replicas of the old data, the class accuracy $A_0, A_1$ of any 
+    classifier should remain the same. Given the fact that the new data set have 
+    same number of positive and negative examples, the accuracy of the classifier on the new
+    dataset is
+    \begin{align*}
+        A &= \frac{\text{\# of correct positive samples} + \text{\# of correct negative samples}}{n'} \\
+        &= \frac{A_0 \cdot \frac{n'}{2} + A_1 \cdot \frac{n'}{2}}{n'} \\
+        &= \frac{A_0 + A_1}{2} \\
+        &= \overline{A}
+    \end{align*}
+
+    Since there are duplicates of the original examples, when calculating the average
+    loss, we should multiply the loss of each positive sample by the number of duplicates
+    $\frac{1}{\kappa}$ of that sample, which explains the $w^{(i)}$ in the function. The
+    sum of the loss should be divided by the total number of samples $n'$, which is
+    \begin{align*}
+        n' &= n + (\frac{1}{\kappa + 1} - \frac{\kappa}{\kappa + 1}) n \\
+        &= \frac{2n}{\kappa + 1}
+    \end{align*}
+    Therefore, the average loss is
+    $$
+    J(\theta) = -\frac{1+\kappa}{2n} \sum_{i=1}^\nexp w^{(i)} \left(y^{(i)}\log(h_{\theta}(x^{(i)})) + (1 - y^{(i)})\log(1 - h_{\theta}(x^{(i)}))\right)
+    $$
 \end{answer}

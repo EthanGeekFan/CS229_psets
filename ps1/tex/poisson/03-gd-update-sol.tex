@@ -1,2 +1,20 @@
 \begin{answer}
+    \\
+    The log-likelihood is
+    $$
+    \ell(\eta) = \log \frac{e^{-e^\eta + \eta y}}{y!}
+    $$
+    The derivative is
+    $$
+    \frac{\partial}{\partial \theta_j} \ell = - x_j^{(i)} e^{\theta^T x^{(i)}} + y^{(i)} x_j^{(i)}
+    $$
+    The gradient is
+    $$
+    \nabla_\theta \ell = - x^{(i)} e^{\theta^T x^{(i)}} + y^{(i)} x^{(i)}
+    $$
+    Therefore, the update rule is
+    \begin{align*}
+        \theta_j &:= \theta_j + \alpha \left( y^{(i)} - e^{\theta^T x^{(i)}} \right) x_j^{(i)} \\
+        \theta   &:= \theta + \alpha \left( y^{(i)} - e^{\theta^T x^{(i)}} \right) x^{(i)}    
+    \end{align*}
 \end{answer}

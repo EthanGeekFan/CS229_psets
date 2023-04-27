@@ -26,6 +26,7 @@ class LinearModel(object):
             y: Training example labels. Shape (n_examples,).
         """
         # *** START CODE HERE ***
+        self.theta = np.linalg.solve(np.dot(X.T, X), np.dot(X.T, y))
         # *** END CODE HERE ***
 
     def create_poly(self, k, X):
@@ -38,6 +39,7 @@ class LinearModel(object):
             X: Training example inputs. Shape (n_examples, 2).
         """
         # *** START CODE HERE ***
+        return np.array([np.array(X[:,1])**i for i in range(k+1)]).T
         # *** END CODE HERE ***
 
     def create_sin(self, k, X):
@@ -49,6 +51,7 @@ class LinearModel(object):
             X: Training example inputs. Shape (n_examples, 2).
         """
         # *** START CODE HERE ***
+        return np.array([np.array(X[:,1])**i for i in range(k+1)] + [np.sin(X[:,1])]).T
         # *** END CODE HERE ***
 
     def predict(self, X):
@@ -63,6 +66,7 @@ class LinearModel(object):
             Outputs of shape (n_examples,).
         """
         # *** START CODE HERE ***
+        return np.dot(X, self.theta)
         # *** END CODE HERE ***
 
 
@@ -78,6 +82,13 @@ def run_exp(train_path, sine=False, ks=[1, 2, 3, 5, 10, 20], filename='plot.png'
         Our objective is to train models and perform predictions on plot_x data
         '''
         # *** START CODE HERE ***
+        model = LinearModel(np.zeros(k+1))
+        if sine:
+            model.fit(model.create_sin(k, train_x), train_y)
+            plot_y = model.predict(model.create_sin(k, plot_x))
+        else:
+            model.fit(model.create_poly(k, train_x), train_y)
+            plot_y = model.predict(model.create_poly(k, plot_x))
         # *** END CODE HERE ***
         '''
         Here plot_y are the predictions of the linear model on the plot_x data
@@ -92,9 +103,13 @@ def run_exp(train_path, sine=False, ks=[1, 2, 3, 5, 10, 20], filename='plot.png'
 
 def main(train_path, small_path, eval_path):
     '''
-    Run all expetriments
+    Run all experiments
     '''
     # *** START CODE HERE ***
+    run_exp(train_path, ks=[3], filename='deg3.png')
+    run_exp(train_path, ks=[3, 5, 10, 20], filename='degk.png')
+    run_exp(train_path, sine=True, ks=[0, 1, 2, 3, 5, 10, 20], filename='sine.png')
+    run_exp(small_path, ks=[1, 2, 5, 10, 20], filename='small.png')
     # *** END CODE HERE ***
 
 if __name__ == '__main__':
