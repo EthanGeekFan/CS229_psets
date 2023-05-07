@@ -6,3 +6,6 @@ __pycache__/
 *.synctex.gz
 
 submission.zip
+
+*.DS_Store
+*Zone.Identifier
