@@ -1,4 +1,21 @@
 \begin{answer}
+    We have 
+    \begin{align*}
+        \ell_\textup{CE} (t, y) &= - \log \left(\frac{\exp(t_y)}{\sum_{s=1}^{k} \exp(t_s)}\right) \\
+        &= -t_y + \log \left(\sum_{s=1}^{k} \exp(t_s)\right)
+    \end{align*}
+    and take the derivative with respect to $t$:
+    \begin{align*}
+        \frac{\partial \ell_\textup{CE} (t, y)}{\partial t} &= -\frac{\partial t_y}{\partial t} + \frac{\partial \log \left(\sum_{s=1}^{k} \exp(t_s)\right)}{\partial t} \\
+        &= - e_y + \frac{1}{\sum_{s=1}^{k} \exp(t_s)} \frac{\partial \sum_{s=1}^{k} \exp(t_s)}{\partial t} \\
+        &= - e_y + \frac{1}{\sum_{s=1}^{k} \exp(t_s)} \sum_{s=1}^{k} \frac{\partial \exp(t_s)}{\partial t} \\
+        &= - e_y + \frac{1}{\sum_{s=1}^{k} \exp(t_s)} \sum_{s=1}^{k} \exp(t_s) e_s \\
+        &= - e_y + \sum_{s=1}^{k} \frac{\exp(t_s)}{\sum_{s=1}^{k} \exp(t_s)} e_s \\
+        &= - e_y + \sum_{s=1}^{k} p_s e_s \\
+        &= - e_y + p \\
+        &= p - e_y
+    \end{align*}
+    There we have proved that $\frac{\partial \ell_\textup{CE} (t, y)}{\partial t} = p - e_y$.
 \end{answer}
    
   

@@ -1,2 +1,42 @@
 \begin{answer}
+    The log likelihood is
+    \begin{align*}
+        & \ell(\phi,\mu_0,\mu_1,\Sigma) \\
+        =& \log \prod_{i=1}^{n} p(x^{(i)}|y^{(i)};\phi,\mu_0,\mu_1,\Sigma)p(y^{(i)};\phi) \\
+        =& \sum_{i=1}^{n} \log p(x^{(i)}|y^{(i)};\phi,\mu_0,\mu_1,\Sigma) + \sum_{i=1}^{n} \log p(y^{(i)};\phi) \\
+        \rightarrow& \sum_{i=1}^{n} \left( \log \frac{1}{|\Sigma|} - (x^{(i)}-\mu_{y^{(i)}})^T\Sigma^{-1}(x^{(i)}-\mu_{y^{(i)}}) \right) + \sum_{i=1}^{n} \left( y^{(i)} \log \phi + (1-y^{(i)}) \log (1-\phi) \right) \\
+    \end{align*}
+    Where I did some scaling to get rid of some constants.
+    We now set the derivative of the log likelihood to zero to find the parameters.
+    For $\phi$, we have
+    \begin{align*}
+        \frac{\partial \ell}{\partial \phi} &= \sum_{i=1}^{n} \left( \frac{y^{(i)}}{\phi} - \frac{1-y^{(i)}}{1-\phi} \right) \\
+        &= \frac{\sum_{i=1}^{n}1\{y^{(i)} = 1\}}{\phi} - \frac{n - \sum_{i=1}^{n}1\{y^{(i)} = 0\}}{1-\phi}
+    \end{align*}
+    Setting this to zero, we have
+    \begin{align*}
+        \phi = \frac{1}{n} \sum_{i=1}^{n} 1\{y^{(i)} = 1\}
+    \end{align*}
+    For $\mu_0$, we have
+    \begin{align*}
+        \frac{\partial \ell}{\partial \mu_0} &= \sum_{i=1}^{n} \left( -\Sigma^{-1}(x^{(i)}-\mu_0) \right) \\
+        &= -\Sigma^{-1} \sum_{i=1}^{n} 1\{y^{(i)} = 0\} (x^{(i)}-\mu_0)
+    \end{align*}
+    Setting this to zero, we have
+    \begin{align*}
+        \mu_0 = \frac{\sum_{i=1}^{n} 1\{y^{(i)} = 0\} x^{(i)}}{\sum_{i=1}^{n} 1\{y^{(i)} = 0\}}
+    \end{align*}
+    Similarly, we have
+    \begin{align*}
+        \mu_1 = \frac{\sum_{i=1}^{n} 1\{y^{(i)} = 1\} x^{(i)}}{\sum_{i=1}^{n} 1\{y^{(i)} = 1\}}
+    \end{align*}
+    For $\Sigma$, we have
+    \begin{align*}
+        \frac{\partial \ell}{\partial \Sigma} &= \sum_{i=1}^{n} \left( \frac{1}{2} \Sigma^{-1} - \frac{1}{2} \Sigma^{-1} (x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T \Sigma^{-1} \right) \\
+        &= \frac{n}{2} \Sigma^{-1} - \frac{1}{2} \Sigma^{-1} \sum_{i=1}^{n} (x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T \Sigma^{-1}
+    \end{align*}
+    Setting this to zero, we have
+    \begin{align*}
+        \Sigma = \frac{1}{n} \sum_{i=1}^{n} (x^{(i)}-\mu_{y^{(i)}})(x^{(i)}-\mu_{y^{(i)}})^T
+    \end{align*}
 \end{answer}

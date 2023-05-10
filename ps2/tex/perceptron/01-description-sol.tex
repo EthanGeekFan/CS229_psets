@@ -1,2 +1,20 @@
 \begin{answer}
+    From the lecture, we know that this update rule implies that the
+    parameter $\theta$ can be expressed as a linear combination of of
+    the feature mapped vectors $\phi(x^{(i)})$. Therefore, we only need
+    to store and operate on the coefficients of the linear combination
+    instead of the high dimensional parameter vector. At any iteration $i$,
+    there are only $i$ coefficients to store and update. 
+
+    From the kernel trick, we know that to compute $h_{\theta^{(i)}}(x^{(i+1)}) = g({\theta^{(i)}}^T \phi(x^{(i+1)}))$,
+    we can use the kernel function $K(x^{(j)}, x^{(i+1)}) = \phi(x^{(j)})^T \phi(x^{(i+1)})$ which is
+    precomputed and stored in a matrix $K$. Then, we can compute the prediction as
+    \begin{equation*}
+        h_{\theta^{(i)}}(x^{(i+1)}) = g({\theta^{(i)}}^T \phi(x^{(i+1)})) = g(\sum_{j=1}^i \theta_j^{(i)} \phi(x^{(j)})^T \phi(x^{(i+1)})) = g(\sum_{j=1}^i \theta_j^{(i)} K(x^{(j)}, x^{(i+1)}))
+    \end{equation*}
+    where $\theta_j^{(i)}$ is the $j$-th coefficient of $\theta^{(i)}$.
+
+    Finally, to update $\theta^{(i)}$ on a new training example $(x^{(i+1)}, y^{(i+1)})$, we can append a new
+    coefficient $\theta_{i+1}^{(i+1)}$ which is equal to $\alpha (y^{(i+1)} - h_{\theta^{(i)}}(x^{(i+1)}))$. Which
+    can be computed as described above.
 \end{answer}

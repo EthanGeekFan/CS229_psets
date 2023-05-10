@@ -1,3 +1,11 @@
-
 \begin{answer}
+    To minimize the cost function $J_\lambda(\beta)=\frac{1}{2}\|X\beta-\vec{y}\|_2^2+\frac{\lambda}{2}\|\beta\|_2^2$,
+    we take the derivative with respect to $\beta$ and set it to zero:
+    \begin{align*}
+        \nabla_\beta J_\lambda(\beta) &= X^T(X\beta-\vec{y}) + \lambda\beta \\
+        &= X^TX\beta - X^T\vec{y} + \lambda\beta \\
+        &= (X^TX + \lambda I)\beta - X^T\vec{y} = 0 \\
+        \implies \hat{\beta}_\lambda &= (X^TX + \lambda I)^{-1}X^T\vec{y}
+    \end{align*}
+    Proved.
 \end{answer}
