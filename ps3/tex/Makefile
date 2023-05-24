@@ -7,12 +7,12 @@
 	open ps${NUM}.pdf
 
 .ps-sol:
-	pdflatex -jobname=ps${NUM}-sol "\def\solutions{1} \input{ps${NUM}}"
-	pdflatex -jobname=ps${NUM}-sol "\def\solutions{1} \input{ps${NUM}}"
+	pdflatex -jobname=ps${NUM}-sol "\def\solutions{1} \input{ps${NUM}}" < /dev/null
+	pdflatex -jobname=ps${NUM}-sol "\def\solutions{1} \input{ps${NUM}}" < /dev/null
 
 .ps:
-	pdflatex -jobname=ps${NUM} "\def\solutions{0} \input{ps${NUM}}"
-	pdflatex -jobname=ps${NUM} "\def\solutions{0} \input{ps${NUM}}"
+	pdflatex -jobname=ps${NUM} "\def\solutions{0} \input{ps${NUM}}" < /dev/null
+	pdflatex -jobname=ps${NUM} "\def\solutions{0} \input{ps${NUM}}" < /dev/null
 
 all:
 	if [ -f ps1.tex ] ; then NUM=1 make .ps-sol ; fi
