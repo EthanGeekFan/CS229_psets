@@ -1,2 +1,21 @@
-\begin{answer} 
+\begin{answer}
+    Since the data is generated with no noise, the value of beta that makes 0 derivative
+    is the same beta that makes the cost 0.
+    Take the derivative of the loss function with respect to $\beta$:
+    \begin{align*}
+        \frac{\partial}{\partial \beta} J(\beta) &= \frac{\partial}{\partial \beta} \frac{1}{2n} \|X\beta - y\|^2_2 \\
+        &= \frac{1}{n} X^T (X\beta - y)
+    \end{align*}
+    Setting this to zero and solving for $\beta$ gives us:
+    \begin{align*}
+        \frac{1}{n} X^T (X\beta - y) &= 0 \\
+        X^T X \beta &= X^T y \\
+        \beta &= (X^T X)^{-1} X^T y \\
+        \beta &= X^T (X X^T)^{-1} y
+    \end{align*}
+    Taking into account an orthogonal factor $\zeta$, we have:
+    $$
+    \beta = X^T (X X^T)^{-1} y + \zeta
+    $$
+    the factor $\zeta$ will have no effect on the loss because $\zeta^T X^{(i)} = 0$.
 \end{answer}

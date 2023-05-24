@@ -1,3 +1,12 @@
-
 \begin{answer}
+    By analysis of function $f_{\theta,\phi}(x)$, we know that $f_{\theta,\phi}(x)$ is equivalent to 
+    $f_{\theta,\phi}(x) = \beta^T \phi(x)$ for some $\beta \in \R^d$ and 
+    $\beta = \theta^{\odot2} - \phi^{\odot2}$.
+    Then, we have solutions:
+    \begin{align*}
+        \beta &= X^T (XX^T)^{-1} \vec{y} + \zeta \\
+        \theta^{\odot2} - \phi^{\odot2} &= X^T (XX^T)^{-1} \vec{y} + \zeta
+    \end{align*}
+    This means we can have infinitely many solutions with zero cost for $\beta$.
+    Then, we can have infinitely many solutions with zero cost for $\theta$ and $\phi$.
 \end{answer}

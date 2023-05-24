@@ -38,6 +38,7 @@ def linear_model_main():
     # *** START CODE HERE ***
     # find the min norm solution of the training dataset
     # store the results to beta_0
+    beta_0 = X.T.dot(np.linalg.inv(X.dot(X.T))).dot(Y)
     # *** END CODE HERE ***
     
     assert(np.allclose(X.dot(beta_0), Y))
@@ -51,6 +52,12 @@ def linear_model_main():
     # find 3 different solutions and generate a scatter plot
     # your plot should include the min norm solution and 3 different solutions
     # you can use the function generate_plot()
+    betas = []
+    betas.append(beta_0)
+    betas.append(beta_0 + 0.1 * ns[0])
+    betas.append(beta_0 + 0.1 * ns[1])
+    betas.append(beta_0 + 0.1 * ns[2])
+    generate_plot(betas, X, Y, X_val, Y_val, save_path_linear)
     # *** END CODE HERE ***
 
 if __name__ == '__main__':

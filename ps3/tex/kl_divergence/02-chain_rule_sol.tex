@@ -1,2 +1,13 @@
 \begin{answer}
+    Chain rule for KL divergence:
+    \begin{align*}
+        \KL(P(X, Y) \parallel Q(X, Y)) &= \sum_{x} \sum_{y} P(x, y) \log \frac{P(x, y)}{Q(x, y)} \\
+        &= \sum_{x} \sum_{y} P(x, y) \log \frac{P(x) P(y \mid x)}{Q(x) Q(y \mid x)} \\
+        &= \sum_{x} \sum_{y} P(x, y) \log \frac{P(x)}{Q(x)} + \sum_{x} \sum_{y} P(x, y) \log \frac{P(y \mid x)}{Q(y \mid x)} \\
+        &= \sum_{x} P(x) \log \frac{P(x)}{Q(x)} + \sum_{x} \sum_{y} P(x, y) \log \frac{P(y \mid x)}{Q(y \mid x)} \\
+        &= \KL(P(X) \parallel Q(X)) + \sum_{x} P(x) \sum_{y} P(y \mid x) \log \frac{P(y \mid x)}{Q(y \mid x)} \\
+        &= \KL(P(X) \parallel Q(X)) + \KL(P(Y \mid X) \parallel Q(Y \mid X))
+    \end{align*}
+    At the last few lines, I applied the definition of KL divergence, and the KL
+    divergence of a conditional distribution.
 \end{answer}

@@ -1,2 +1,15 @@
 \begin{answer}
+    Nonnegativity of KL divergence:
+    \begin{align*}
+        \KL(P \parallel Q) &= \sum_{x \in \mathcal{X}} P(x) \log \frac{P(x)}{Q(x)} \\
+        &= - \sum_{x \in \mathcal{X}} P(x) \log \frac{Q(x)}{P(x)} \\
+        &\geq - \log \sum_{x \in \mathcal{X}} P(x) \frac{Q(x)}{P(x)} \\
+        &= - \log \sum_{x \in \mathcal{X}} Q(x) \\
+        &= - \log 1 \\
+        &= 0
+    \end{align*}
+    The inequality is due to Jensen's inequality.
+    Since $- \log x$ is a convex function, and if given $E[f(X)] = f(E[X])$,
+    then we have equality if and only if $X$ is a constant. In this case,
+    $\frac{P(x)}{Q(x)}$ is constant for all $x \in \mathcal{X}$, which means $P(x) = Q(x)$.
 \end{answer}

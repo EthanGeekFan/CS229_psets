@@ -1,2 +1,13 @@
 \begin{answer}
+    The norm of the vector $\beta$ is given by:
+    \begin{align*}
+        \|\beta\|_2 &= \left\|X^T (X X^T)^{-1} y + \zeta\right\|_2^2 \\
+        &= \left\|X^T (X X^T)^{-1} y\right\|_2^2 + \left\|\zeta\right\|_2^2 \\
+        &= \|\rho\|_2^2 + \left\|\zeta\right\|_2^2
+    \end{align*}
+    The equality uses the fact that $\zeta^T X^{(i)} = 0$ for all $i$.
+    Since $\left\|\zeta\right\|_2^2 \geq 0$, we have:
+    $$
+    \|\rho\|_2^2 \leq \|\beta\|_2^2
+    $$
 \end{answer}

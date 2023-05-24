@@ -1,3 +1,27 @@
-
 \begin{answer}
+    If we start with zero initialization, the first beta $beta^{(1)}$ will be:
+    \begin{align*}
+        \beta^{(1)} &= \beta^{(0)} - \eta \nabla J(\beta^{(0)}) \\
+        &= \beta^{(0)} - \frac{\eta}{n} X^T (X \beta^{(0)} - y) \\
+        &= \vec{0} - \frac{\eta}{n} X^T (X \cdot \vec{0} - y) \\
+        &= \frac{\eta}{n} X^T y
+    \end{align*}
+    which is a linear combination of the columns of $X^T$ with coefficients $y$.
+    This implies that the first beta is a linear combination of $\{x^{(i)}\}_{i=1}^n$.
+    Moreover, if $\beta^{(k)}$ is a linear combination of $\{x^{(i)}\}_{i=1}^n$, then
+    \begin{align*}
+        \beta^{(k+1)} &= \beta^{(k)} - \eta \nabla J(\beta^{(k)}) \\
+        &= \beta^{(k)} - \frac{\eta}{n} X^T (X \beta^{(k)} - y) \\
+        &= X^T v^{(k)} - \frac{\eta}{n} X^T (X X^T v^{(k)} - y) \\
+        &= X^T (v^{(k)} - \frac{\eta}{n} (X X^T v^{(k)} - y))
+    \end{align*}
+    which is also a linear combination of $\{x^{(i)}\}_{i=1}^n$. Therefore,
+    by induction, if we start from linear initialization, then $\beta^{(k)}$ is a linear combination of $\{x^{(i)}\}_{i=1}^n$ for all $k$.
+    
+    From the above induction, we let $\beta^{(k)} = X^T v^{(k)}$ for some $v^{(k)} \in \R^d$.
+    Then, if we also have J($\beta^{(k)}$) = 0, then we know that $\beta^{(k)}$ is of a form of Eq.~\eqref{equ:ir2}.
+    
+    Since $\beta^{(k)}$ is a linear combination of $\{x^{(i)}\}_{i=1}^n$, we know that $\beta^{(k)}$ is in the column space of $X^T$.
+    Therefore, the null space factor $\zeta$ is zero, and $\|\zeta\|_2 = 0$.
+    Then, we have $\beta^{(k)} = \rho$. Then this $\beta^{(k)}$ is the minimum norm solution, the same as $\hat{\beta}$.
 \end{answer}

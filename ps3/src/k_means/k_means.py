@@ -26,7 +26,13 @@ def init_centroids(num_clusters, image):
     """
 
     # *** START YOUR CODE ***
-    # raise NotImplementedError('init_centroids function not implemented')
+    H, W, C = np.shape(image)
+    centroids_init = np.zeros((num_clusters, C))
+
+    for i in range(num_clusters):
+        h = random.randint(0, H-1)
+        w = random.randint(0, W-1)
+        centroids_init[i, :] = image[h, w, :]
     # *** END YOUR CODE ***
 
     return centroids_init
@@ -55,11 +61,33 @@ def update_centroids(centroids, image, max_iter=30, print_every=10):
 
     # *** START YOUR CODE ***
     # raise NotImplementedError('update_centroids function not implemented')
+    H, W, C = np.shape(image)
+    new_centroids = np.copy(centroids)
+
+    for i in range(max_iter):
         # Usually expected to converge long before `max_iter` iterations
+        if i % print_every == 0:
+            print('[INFO] Iteration {}/{}'.format(i, max_iter))
+        
+        # Initialize `new_centroids` to zeros
+        new_centroids = np.zeros((np.shape(centroids)))
+        # Initialize `counts` to zeros
+        counts = np.zeros((np.shape(centroids)[0], 1))
+
+        for h in range(H):
+            for w in range(W):
                 # Initialize `dist` vector to keep track of distance to every centroid
+                dist = np.zeros((np.shape(centroids)[0], 1))
                 # Loop over all centroids and store distances in `dist`
+                for c in range(np.shape(centroids)[0]):
+                    dist[c] = np.linalg.norm(image[h, w, :] - centroids[c, :])
                 # Find closest centroid and update `new_centroids`
+                new_centroids[np.argmin(dist), :] += image[h, w, :]
+                # Update `counts`
+                counts[np.argmin(dist)] += 1
         # Update `new_centroids`
+        for c in range(np.shape(centroids)[0]):
+            new_centroids[c, :] /= counts[c] if counts[c] != 0 else 1
     # *** END YOUR CODE ***
 
     return new_centroids
@@ -85,9 +113,17 @@ def update_image(image, centroids):
 
     # *** START YOUR CODE ***
     # raise NotImplementedError('update_image function not implemented')
+    H, W, C = np.shape(image)
+
+    for h in range(H):
+        for w in range(W):
             # Initialize `dist` vector to keep track of distance to every centroid
+            dist = np.zeros((np.shape(centroids)[0], 1))
             # Loop over all centroids and store distances in `dist`
+            for c in range(np.shape(centroids)[0]):
+                dist[c] = np.linalg.norm(image[h, w, :] - centroids[c, :])
             # Find closest centroid and update pixel value in `image`
+            image[h, w, :] = centroids[np.argmin(dist), :]
     # *** END YOUR CODE ***
 
     return image

@@ -35,6 +35,14 @@ class QP:
             # *** START CODE HERE ***
             # Compute the gradient of self.theta, self.phi using data X, Y
             # and update self.theta, self.phi
+            n, d = X.shape
+            grad_theta = np.zeros(d)
+            grad_phi = np.zeros(d)
+            for i in range(n):
+                grad_theta += (X[i].T.dot(self.theta ** 2 - self.phi ** 2) - Y[i]) / n * (self.theta * X[i])
+                grad_phi += (X[i].T.dot(self.theta ** 2 - self.phi ** 2) - Y[i]) / n * (-self.phi * X[i])
+            self.theta -= eta * grad_theta
+            self.phi -= eta * grad_phi
             # *** END CODE HERE ***
             if verbose:
                 log_steps.append(t)
@@ -74,6 +82,14 @@ class QP:
             # *** START CODE HERE ***
             # Compute the gradient of self.theta, self.phi using data X_batch, Y_batch
             # and update self.theta, self.phi
+            n, d = X_batch.shape
+            grad_theta = np.zeros(d)
+            grad_phi = np.zeros(d)
+            for i in range(n):
+                grad_theta += (X_batch[i].T.dot(self.theta ** 2 - self.phi ** 2) - Y_batch[i]) / n * (self.theta * X_batch[i])
+                grad_phi += (X_batch[i].T.dot(self.theta ** 2 - self.phi ** 2) - Y_batch[i]) / n * (-self.phi * X_batch[i])
+            self.theta -= eta * grad_theta
+            self.phi -= eta * grad_phi
             # *** END CODE HERE ***
             if verbose:
                 log_steps.append(t)

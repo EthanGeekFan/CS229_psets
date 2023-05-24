@@ -1,2 +1,13 @@
 \begin{answer}
+    \begin{align*}
+        \arg\min_\theta \KL(\hat{P} \parallel P_\theta) &= \arg\min_\theta \sum_{x \in \mathcal{X}} \hat{P}(x) \log \frac{\hat{P}(x)}{P_\theta(x)} \\
+        &= \arg\min_\theta \sum_{x \in \mathcal{X}} \hat{P}(x) \log \hat{P}(x) - \sum_{x \in \mathcal{X}} \hat{P}(x) \log P_\theta(x) \\
+        &= \arg\min_\theta - \sum_{x \in \mathcal{X}} \hat{P}(x) \log P_\theta(x) \\
+        &= \arg\min_\theta - \sum_{x \in \mathcal{X}} \hat{P}(x) \log \prod_{i=1}^n P_\theta(x^{(i)}) \\
+        &= \arg\min_\theta - \sum_{x \in \mathcal{X}} \hat{P}(x) \sum_{i=1}^n \log P_\theta(x^{(i)}) \\
+        &= \arg\min_\theta - \sum_{i=1}^n \sum_{x \in \mathcal{X}} \hat{P}(x) \log P_\theta(x^{(i)}) \\
+        &= \arg\min_\theta - \sum_{i=1}^n \sum_{x \in \mathcal{X}} 1\{\xsi=x\} \log P_\theta(x^{(i)}) \\
+        &= \arg\min_\theta - \sum_{i=1}^n \log P_\theta(x^{(i)}) \\
+        &= \arg\max_\theta \sum_{i=1}^n \log P_\theta(x^{(i)})
+    \end{align*}
 \end{answer}
