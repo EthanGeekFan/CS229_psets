@@ -1,0 +1,9 @@
+{
+    "latex-workshop.latex.external.build.command": "make",
+    "latex-workshop.latex.external.build.args": [
+        "-C",
+        "%DIR%"
+    ],
+    "latex-workshop.latex.autoBuild.run": "onSave",
+    "latex-workshop.latex.jobname": "ps4-sol"
+}
